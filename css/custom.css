@@ -55,6 +55,7 @@ header, footer, main, section, article {
     font-family: Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: 300;
     font-size: 0.95rem;
+    color: black;
 }
 body {
     background: #f4f4f4;
