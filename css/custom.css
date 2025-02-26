@@ -79,6 +79,10 @@ p {
     margin-bottom: 0.5rem;
     line-height: 1.3;
 }
+#pickers {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
 input[name="scheduleType"] {
     margin: 0.4rem;
 }
