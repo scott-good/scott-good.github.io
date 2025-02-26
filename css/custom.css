@@ -61,6 +61,7 @@ body {
     left: 50%;
     margin-left: -400px;
     box-shadow: 5px 5px 5px #ccc;
+    border-radius: 8px;
 }
 strong {
     font-weight: 700;
