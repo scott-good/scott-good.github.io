@@ -71,7 +71,7 @@ body {
 }
 #dialogMain main {
     background: white;
-    padding: 1rem 4rem;
+    padding: 1.2rem 4rem;
 }
 strong {
     font-weight: 500;
@@ -178,13 +178,13 @@ footer .submit {
     position: absolute;
     width: 2rem;
     left: 17px;
-    top: 13px;
+    top: 15px;
 }
 .close-icon {
     position: absolute;
     width: 1.5rem;
     right: 17px;
-    top: 13px;
+    top: 17px;
 }
 input[type=checkbox],
 input[type=radio] {
