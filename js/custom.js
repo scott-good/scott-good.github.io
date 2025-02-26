@@ -1,8 +1,6 @@
-var timesArr = ["12:00 AM EDT","1:00 AM EDT","2:00 AM EDT","3:00 AM EDT","4:00 AM EDT","5:00 AM EDT","6:00 AM EDT","7:00 AM EDT","8:00 AM EDT","9:00 AM EDT","10:00 AM EDT","11:00 AM EDT","12:00 PM EDT",
-    "1:00 PM EDT","2:00 PM EDT","3:00 PM EDT","4:00 PM EDT","5:00 PM EDT","6:00 PM EDT","7:00 PM EDT","8:00 PM EDT","9:00 PM EDT","10:00 PM EDT","11:00 PM EDT"];
-var endTimesArr = ["1:00 AM EDT","2:00 AM EDT","3:00 AM EDT","4:00 AM EDT","5:00 AM EDT","6:00 AM EDT","7:00 AM EDT","8:00 AM EDT","9:00 AM EDT","10:00 AM EDT","11:00 AM EDT","12:00 PM EDT",
-        "1:00 PM EDT","2:00 PM EDT","3:00 PM EDT","4:00 PM EDT","5:00 PM EDT","6:00 PM EDT","7:00 PM EDT","8:00 PM EDT","9:00 PM EDT","10:00 PM EDT","11:00 PM EDT","Continue running"];
-var daysList = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];    
+var timesArr = ["12:00 AM &TZ","1:00 AM &TZ","2:00 AM &TZ","3:00 AM &TZ","4:00 AM &TZ","5:00 AM &TZ","6:00 AM &TZ","7:00 AM &TZ","8:00 AM &TZ","9:00 AM &TZ","10:00 AM &TZ","11:00 AM &TZ","12:00 PM &TZ",
+    "1:00 PM &TZ","2:00 PM &TZ","3:00 PM &TZ","4:00 PM &TZ","5:00 PM &TZ","6:00 PM &TZ","7:00 PM &TZ","8:00 PM &TZ","9:00 PM &TZ","10:00 PM &TZ","11:00 PM &TZ","Continue running"];
+var daysList = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];  
 function selectDay(dayVal){
     checkHideWhens();
 }
@@ -21,15 +19,15 @@ function buildDropdowns (row) {
     for (a = 0; a < rowsArr.length; a++){
         thisRow = rowsArr[a];
         startCol = thisRow.getElementsByClassName('start')[0];
-        startCol.innerHTML = getDropdownHtml('start' + a, timesArr, 7);
+        startCol.innerHTML = getDropdownHtml('start' + a, timesArr, 7, true);
         endCol = thisRow.getElementsByClassName('end')[0];
-        endCol.innerHTML = getDropdownHtml('end' + a, endTimesArr, 18);
+        endCol.innerHTML = getDropdownHtml('end' + a, timesArr, 18, false);
     }
     checkHideWhens();
 }
-function getDropdownHtml(name, values, selectedVal) {
+function getDropdownHtml(name, values, selectedVal, isStartTimeList) {
     let outHTML = "<select id='" + name + "' class='timePicker' name='" + name + "' onchange='checkHideWhens(this)'>";
-    for (var b = 0; b < values.length; b++){
+    for (var b = ((isStartTimeList)?0:1); b < ((isStartTimeList) ? values.length-1:values.length); b++){
         outHTML += "<option value='" + values[b] + "'";
         outHTML += (b === selectedVal) ? " selected ":"";
         outHTML += ">" + values[b];
@@ -56,7 +54,7 @@ function checkHideWhens(objRef){
             
         } else if (nextRow.getElementsByClassName('start')[0].innerHTML.startsWith("Continued from")) {
             // need to reset the next start field
-            nextRow.getElementsByClassName('start')[0].innerHTML = getDropdownHtml('start' + nextRow, timesArr, 7);
+            nextRow.getElementsByClassName('start')[0].innerHTML = getDropdownHtml('start' + nextRow, timesArr, 7, true);
             nextRow.getElementsByClassName('daySelector')[0].disabled = false;
             
         }
@@ -104,6 +102,14 @@ function validateOneRowEnabled(){
     }
     document.getElementById('primaryError').innerHTML = (!hasCheckedDay) ? 'You must select at least one day for a custom schedule.' : "";
 }
+function setTimeZone(){
+    var timeZone = new Date().toLocaleTimeString('en-us',{timeZoneName:'short'}).split(' ')[2];
+    for(var i=0; i < timesArr.length; i++) {
+        timesArr[i] = timesArr[i].replace(/&TZ/g, timeZone);
+    }
+    document.querySelector('label[for=schedType1]').innerHTML = 'Monday-Friday 7:00 AM-7:00 PM ' + timeZone;
+}
+setTimeZone();
 buildDropdowns('all');
 checkSchedType();
 

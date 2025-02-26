@@ -16,8 +16,10 @@
         <p>
           <strong>Create a schedule that meets your needs.</strong> This sandbox will always be available for use during the hours specified. It will not be automatically paused if you have used it anytime within one hour of the specified end time. You can manually pause or play at any time.
         </p>
-        <input class='schedType' onclick='checkSchedType()' type='radio' name='scheduleType' value='standard' checked='checked'> Monday-Friday 8:00 AM-8:00 PM EDT<br />
-        <input class='schedType' onclick='checkSchedType()' type='radio' name='scheduleType' value='custom'> Custom
+        <input id='schedType1' class='schedType' onclick='checkSchedType()' type='radio' name='scheduleType' value='standard' checked='checked'>
+        <label for="schedType1"> Monday-Friday 7:00 AM-7:00 PM EDT</label><br />
+        <input id='schedType2' class='schedType' onclick='checkSchedType()' type='radio' name='scheduleType' value='custom'>
+        <label for="schedType2"> Custom</label><br />
         <div id="customSchedArea">
             <p>
                 <strong>Define a custom schedule.</strong> Choose the days and times your sandbox will be available. To continue across multiple days, select <em>Continue running</em>.
@@ -102,7 +104,6 @@
             </div>
         </div>
       </div>
-      
     <script src='js/custom.js'></script>
 </body>
 </html>
