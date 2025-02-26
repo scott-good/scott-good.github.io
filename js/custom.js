@@ -21,7 +21,7 @@ function buildDropdowns (row) {
         startCol = thisRow.getElementsByClassName('start')[0];
         startCol.innerHTML = getDropdownHtml('start' + a, timesArr, 7, true);
         endCol = thisRow.getElementsByClassName('end')[0];
-        endCol.innerHTML = getDropdownHtml('end' + a, timesArr, 18, false);
+        endCol.innerHTML = getDropdownHtml('end' + a, timesArr, 19, false);
     }
     checkHideWhens();
 }
