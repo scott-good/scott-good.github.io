@@ -65,7 +65,7 @@ body {
     top: 4rem;
     left: 50%;
     margin-left: -300px;
-    box-shadow: 15px 15px 15px #ccc;
+    box-shadow: 15px 15px 15px #ddd;
     border-radius: 8px;
     border-top: 10px solid #267886;
 }
@@ -186,3 +186,8 @@ footer .submit {
     right: 17px;
     top: 13px;
 }
+input[type=checkbox],
+input[type=radio] {
+    accent-color: #267886;
+}
+  
