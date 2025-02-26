@@ -50,9 +50,10 @@ function checkHideWhens(objRef){
             let dayCheckbox = nextRow.getElementsByClassName('daySelector')[0];
             dayCheckbox.checked = true;
             dayCheckbox.disabled = true;
-            nextRow.getElementsByClassName('start')[0].innerHTML = "Continued from " + daysList[thisRow];
+            nextRow.getElementsByClassName('start')[0].innerHTML = "<span class='continuedText'>Continued from " + daysList[thisRow] + "</span>";
             
-        } else if (nextRow.getElementsByClassName('start')[0].innerHTML.startsWith("Continued from")) {
+        } else if (nextRow.getElementsByClassName('start')[0].innerHTML.includes("Continued from")) {
+        //} else if (nextRow.getElementsByClassName('start')[0].innerHTML.startsWith("<span")) {
             // need to reset the next start field
             nextRow.getElementsByClassName('start')[0].innerHTML = getDropdownHtml('start' + nextRow, timesArr, 7, true);
             nextRow.getElementsByClassName('daySelector')[0].disabled = false;
@@ -73,7 +74,7 @@ function validateFields(rowObj){
     if (rowObj.getElementsByClassName('daySelector')[0].checked){
         hasCheckedDay = true;
         // only check active rows
-        let isContinued = (rowObj.getElementsByClassName('start')[0].innerHTML.startsWith("Continued from")) ? true : false;
+        let isContinued = (rowObj.getElementsByClassName('start')[0].innerHTML.includes("Continued from")) ? true : false;
         if (!isContinued) {
             // don't need to check if continued from prev day
             //let startIndex = document.getElementById('start' + rowNum).selectedIndex;
