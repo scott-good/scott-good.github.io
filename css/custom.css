@@ -60,11 +60,11 @@ body {
     background: #f4f4f4;
 }
 #dialogMain {
-    width: 600px;
+    width: 650px;
     position: absolute;
     top: 4rem;
     left: 50%;
-    margin-left: -300px;
+    margin-left: -325px;
     box-shadow: 15px 15px 15px #ddd;
     border-radius: 8px;
     border-top: 10px solid #267886;
