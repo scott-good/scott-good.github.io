@@ -1,0 +1,109 @@
+<!doctype html>
+
+<html lang='en'>
+<head>
+    <title>Custom schedule dialog</title>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <link rel='stylesheet' type='text/css' href='css/custom.css'>
+</head>
+
+<body>
+    <div id='dialogMain'>
+        <h1>
+          Set custom schedule
+        </h1>
+        <p>
+          <strong>Create a schedule that meets your needs.</strong> This sandbox will always be available for use during the hours specified. It will not be automatically paused if you have used it anytime within one hour of the specified end time. You can manually pause or play at any time.
+        </p>
+        <input class='schedType' onclick='checkSchedType()' type='radio' name='scheduleType' value='standard' checked='checked'> Monday-Friday 8:00AM-8:00 PM EDT<br />
+        <input class='schedType' onclick='checkSchedType()' type='radio' name='scheduleType' value='custom'> Custom
+        <div id="customSchedArea">
+            <p>
+                <strong>Define a custom schedule.</strong> Choose the days and times your sandbox will be available. To continue across multiple days, select <em>Continue running</em>.
+            </p>
+            <div id="primaryError"></div>
+            <div class="head">
+                <div class="row">
+                    <div class="col1 label"></div>
+                    <div class="col2 start">Start time</div>
+                    <div class="col3 end">End time</div>
+                </div>
+            </div>
+            <div id='sunday' class="schedLine sunday">
+                <div class="row">
+                    <div class="col1 label">
+                        <input class='daySelector' type="checkbox" value="Y" onclick="selectDay('0');"> Sunday
+                    </div>
+                    <div id='sundayStart' class="col2 start"></div>
+                    <div id='sundayEnd' class="col3 end"></div>
+                </div>
+                <div id='sunday-Error' class="errorMsg"></div>
+            </div>
+            <div id='monday' class="schedLine monday">
+                <div class="row">
+                    <div class="col1">
+                        <input class='daySelector' type="checkbox" value="Y" onclick="selectDay('1');" checked> Monday
+                    </div>
+                    <div id='mondayStart' class="col2 start"></div>
+                    <div id='mondayEnd' class="col3 end"></div>
+                </div>
+                <div id='monday-Error' class="errorMsg"></div>
+            </div>
+            <div id='tuesday' class="schedLine tuesday">
+                <div class="row">
+                    <div class="col1">
+                        <input class='daySelector' type="checkbox" value="Y" onclick="selectDay('2');" checked> Tuesday
+                    </div>
+                    <div id='tuesdayStart' class="col2 start"></div>
+                    <div id='tuesdayEnd' class="col3 end"></div>
+                </div>
+                <div id='tuesday-Error' class="errorMsg"></div>
+            </div>
+            <div id='wednesday' class="schedLine wednesday">
+                <div class="row">
+                    <div class="col1">
+                        <input class='daySelector' type="checkbox" value="Y" onclick="selectDay('3');" checked> Wednesday
+                    </div>
+                    <div id='wednesdayStart' class="col2 start"></div>
+                    <div id='wednesdayEnd' class="col3 end"></div>
+                </div>
+                <div id='wednesday-Error' class="errorMsg"></div>
+            </div>
+            <div id='thursday' class="schedLine thursday">
+                <div class="row">
+                    <div class="col1">
+                        <input class='daySelector' type="checkbox" value="Y" onclick="selectDay('4');" checked> Thursday
+                    </div>
+                    <div id='thursdayStart' class="col2 start"></div>
+                    <div id='thursdayEnd' class="col3 end"></div>
+                </div>
+                <div id='thursday-Error' class="errorMsg"></div>
+            </div>
+            <div id='friday' class="schedLine friday">
+                <div class="row">
+                    <div class="col1">
+                        <input class='daySelector' type="checkbox" value="Y" onclick="selectDay('5');" checked> Friday
+                    </div>
+                    <div id='fridayStart' class="col2 start"></div>
+                    <div id='fridayEnd' class="col3 end"></div>
+                </div>
+                <div id='friday-Error' class="errorMsg"></div>
+            </div>
+            <div id='saturday' class="schedLine saturday">
+                <div class="row">
+                    <div class="col1">
+                        <input class='daySelector' type="checkbox" value="Y" onclick="selectDay('6');"> Saturday
+                    </div>
+                    <div id='saturdayStart' class="col2 start"></div>
+                    <div id='saturdayEnd' class="col3 end"></div>
+                </div>
+                <div id='saturday-Error' class="errorMsg"></div>
+            </div>
+        </div>
+      </div>
+      
+    <script src='js/custom.js'></script>
+</body>
+</html>
+     

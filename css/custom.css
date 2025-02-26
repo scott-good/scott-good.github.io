@@ -1,0 +1,106 @@
+/* css reset */
+
+*{ 
+    margin: 0;
+    padding: 0;
+    font: inherit;
+}
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+html {
+    color-scheme: light dark;
+    hanging-punctuation: first last;
+}
+body {
+    min-height: 100svh;
+    margin: 2rem;
+}
+.wrapper {
+    --content-max-width: 1160px;
+    --margin-per-side: 2rem;
+    
+    width: min(var(--content-max-width), 100% - (var(--margin-per-side)*2));
+    margin-inline: auto;
+}
+img,
+picture,
+svg,
+video {
+    display: block;
+    max-width: 100%;
+}
+h1, h2, h3, h4, h5, h6 {
+    text-wrap: balance;
+}
+p, li, figcaption {
+    max-width: 70ch;
+    text-wrap: pretty;
+}
+header, footer, main, section, article {
+    container-type: inline-size;
+}
+@media (prefers-reduced-motion: no-preference) {
+    html,
+    :has(:target) {
+        scroll-behavior: smooth;
+        scroll-padding-top: 2rem;
+    }
+}
+/* end reset */
+body {
+    background: #ddd;
+}
+#dialogMain {
+    background: white;
+    padding: 2rem;
+    position: absolute;
+    top: 4rem;
+    left: 50%;
+    margin-left: -400px;
+    box-shadow: 5px 5px 5px #ccc;
+}
+strong {
+    font-weight: 700;
+}
+em {
+    font-style: italic;
+}
+h1 {
+    font-size: 2rem;
+    font-weight: 300;
+    margin-bottom: 1rem;
+}
+p {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+}
+input[name="scheduleType"] {
+    margin: 0.4rem;
+}
+#customSchedArea {
+    display: none;
+}
+#customSchedArea .row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-column-gap: 1rem;
+}
+.schedLine {
+    margin: 1rem;
+}
+.errorMsg {
+    color: red;
+    margin: 0.5rem 0 0 12.5rem;
+}
+#primaryError {
+    color: red;
+    font-weight: 700;
+    margin: 1rem;
+}
+* {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
