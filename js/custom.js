@@ -49,11 +49,16 @@ function checkHideWhens(objRef){
         let thisRow = parseInt(thisID.charAt(thisID.length-1));
         let nextRow = allRows[(thisRow === 6)?0 : thisRow + 1];
         if (objRef.options[objRef.selectedIndex].value === "Continue running"){
-            nextRow.getElementsByClassName('daySelector')[0].checked = true;
+            let dayCheckbox = nextRow.getElementsByClassName('daySelector')[0];
+            dayCheckbox.checked = true;
+            dayCheckbox.disabled = true;
             nextRow.getElementsByClassName('start')[0].innerHTML = "Continued from " + daysList[thisRow];
+            
         } else if (nextRow.getElementsByClassName('start')[0].innerHTML.startsWith("Continued from")) {
             // need to reset the next start field
             nextRow.getElementsByClassName('start')[0].innerHTML = getDropdownHtml('start' + nextRow, timesArr, 7);
+            nextRow.getElementsByClassName('daySelector')[0].disabled = false;
+            
         }
     }
     let checkBx;
