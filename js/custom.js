@@ -1,27 +1,46 @@
 var timesArr = ["12:00 AM &TZ","1:00 AM &TZ","2:00 AM &TZ","3:00 AM &TZ","4:00 AM &TZ","5:00 AM &TZ","6:00 AM &TZ","7:00 AM &TZ","8:00 AM &TZ","9:00 AM &TZ","10:00 AM &TZ","11:00 AM &TZ","12:00 PM &TZ",
     "1:00 PM &TZ","2:00 PM &TZ","3:00 PM &TZ","4:00 PM &TZ","5:00 PM &TZ","6:00 PM &TZ","7:00 PM &TZ","8:00 PM &TZ","9:00 PM &TZ","10:00 PM &TZ","11:00 PM &TZ","Continue running"];
-var daysList = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];  
+var daysList = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]; 
+
 function selectDay(dayVal){
     checkHideWhens();
+    let thisCheckbox = document.getElementsByClassName('daySelector')[dayVal];
+    if (!thisCheckbox.checked) {
+        let curEndVal = document.getElementById('end' + dayVal).value;
+        if (curEndVal == "Continue running"){
+            let nextDayVal = (dayVal === 6) ? 0 : dayVal + 1;
+            let nextDayChkbx = document.getElementsByClassName('daySelector')[nextDayVal];
+            nextDayChkbx.disabled = false;
+            nextDayChkbx.checked = true;
+            buildDropdowns(nextDayVal, true, false);
+        }
+    } else {
+        buildDropdowns(dayVal, true, true);
+    } 
 }
-function buildDropdowns (row) {
-    let debug = false;
+function buildDropdowns (row, startBool, endBool) {
     let allRows = document.getElementsByClassName('schedLine');
+    let singleValue = false;
     let rowsArr = [];
     if (row === 'all'){
         rowsArr = allRows;
     } else {
-        rowsArr = allRows[row];
+        rowsArr = [allRows[row]];
+        singleValue = true;
     }
     let thisRow;
     let startCol;
     let endCol;
-    for (a = 0; a < rowsArr.length; a++){
+    for (a = 0; a <= rowsArr.length; a++){
         thisRow = rowsArr[a];
-        startCol = thisRow.getElementsByClassName('start')[0];
-        startCol.innerHTML = getDropdownHtml('start' + a, timesArr, 7, true);
-        endCol = thisRow.getElementsByClassName('end')[0];
-        endCol.innerHTML = getDropdownHtml('end' + a, timesArr, 19, false);
+        if (startBool) {
+            startCol = thisRow.getElementsByClassName('start')[0];
+            startCol.innerHTML = getDropdownHtml('start' + ((singleValue) ? row : a), timesArr, 7, true);
+        }
+        if (endBool) {
+            endCol = thisRow.getElementsByClassName('end')[0];
+            endCol.innerHTML = getDropdownHtml('end' + ((singleValue) ? row : a), timesArr, 19, false);
+        }
     }
     checkHideWhens();
 }
@@ -111,6 +130,6 @@ function setTimeZone(){
     document.querySelector('label[for=schedType1]').innerHTML = 'Monday-Friday 7:00 AM-7:00 PM ' + timeZone;
 }
 setTimeZone();
-buildDropdowns('all');
+buildDropdowns('all', true, true);
 checkSchedType();
 
